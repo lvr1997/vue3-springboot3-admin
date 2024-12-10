@@ -20,22 +20,14 @@ http.interceptors.request.use((config) => {
 
 // 响应拦截
 http.interceptors.response.use((res) => {
-        let { code, message, data } = res.data;
+        let { code, message } = res.data;
         //key = value  status等于200就执行200下的代码 执行完break退出循环
         switch (code) {
-            case '200':
-                ElMessage({
-                    showClose: true,
-                    message: message,
-                    type: "success",
-                });
+            case '400':
+                ElMessage.error(message)
                 break;
             case '500':
-                ElMessage({
-                    showClose: true,
-                    message: "系统错误",
-                    type: "error",
-                });
+                ElMessage.error(message)
                 break;
         }
         return res.data;

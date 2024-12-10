@@ -24,28 +24,42 @@
 
     <insert id="insert" parameterType="com.example.entities.Employee">
         INSERT INTO employee
-            (`no`, `name`, `sex`, `birthday`, `description`, `department_id`)
+            (`username`, `password`, `role` ,`no`, `name`, `sex`, `birthday`, `description`, `department_id`)
         VALUES
-            (#{no}, #{name}, #{sex}, #{birthday}, #{description}, #{departmentId});
+            (#{username}, #{password}, #{role}, #{no}, #{name}, #{sex}, #{birthday}, #{description}, #{departmentId});
     </insert>
 
     <update id="update" parameterType="com.example.entities.Employee">
-        update employee set
-        <if test="name != null and name != ''">
-            name = #{name},
-        </if>
-        <if test="sex != null and sex != ''">
-            sex = #{sex},
-        </if>
-        <if test="no != null and no != ''">
-            no = #{no},
-        </if>
-        <if test="birthday!=null">
-            birthday = #{birthday},
-        </if>
-        <if test="description != null and description != ''">
-            description = #{departmentId}
-        </if>
+        update employee
+        <set>
+            <if test="username != null and username!=''">
+                username = #{username},
+            </if>
+            <if test="password != null and password!=''">
+                password = #{password},
+            </if>
+            <if test="role != null and role!=''">
+                role = #{role},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+            <if test="no != null and no != ''">
+                no = #{no},
+            </if>
+            <if test="birthday!=null">
+                birthday = #{birthday},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="departmentId != null and departmentId !=''">
+                department_id = #{departmentId},
+            </if>
+        </set>
         where id = #{id}
     </update>
 </mapper>

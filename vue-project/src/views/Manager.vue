@@ -2,8 +2,10 @@
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import { House,DataAnalysis,Setting } from '@element-plus/icons-vue'
 import { useRoute } from "vue-router";
+import { useUserStore } from "@/store/user.js";
 
 const route = useRoute()
+const userStore = useUserStore()
 </script>
 
 <template>
@@ -18,7 +20,7 @@ const route = useRoute()
         <div class="center"></div>
         <div class="right">
           <el-avatar> user </el-avatar>
-          <span> 超级管理员</span>
+          <span>{{ userStore.userInfo.name }}</span>
         </div>
       </el-header>
       <el-container>
